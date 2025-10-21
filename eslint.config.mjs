@@ -40,6 +40,12 @@ export default [
       sourceType: 'module',
       parserOptions: {
         ecmaFeatures: { jsx: true },
+        // Point the TS parser at the monorepo root and the frontend tsconfigs
+        tsconfigRootDir: import.meta.dirname,
+        project: [
+          './frontend/tsconfig.app.json',
+          './frontend/tsconfig.node.json',
+        ],
       },
       globals: {
         ...globals.browser,
@@ -57,6 +63,23 @@ export default [
       'react/jsx-uses-react': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+
+  // Backend TypeScript project config (Node environment)
+  {
+    files: ['backend/**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parserOptions: {
+        // Point the TS parser at the monorepo root and backend tsconfig
+        tsconfigRootDir: import.meta.dirname,
+        project: ['./backend/tsconfig.json'],
+      },
+      globals: {
+        ...globals.node,
+      },
     },
   },
 
