@@ -31,7 +31,9 @@
   - Health: `GET http://localhost:3001/health` → `{ "status": "ok" }`
 
 - Frontend
-  - To be scaffolded with Vite React TS; will use `VITE_API_BASE=http://localhost:3001`.
+  - Dev: `pnpm --filter @public-portfolio/frontend dev` (Vite dev server @ 5173)
+  - Proxy (optional): set `server.proxy` in `frontend/vite.config.ts` to route `/api` → `http://localhost:3001`
+  - Env: access client vars via `import.meta.env.VITE_*`; load others in `vite.config.ts` via `loadEnv`
 
 ## Local with Docker Compose (future)
 

@@ -1,9 +1,15 @@
 # Technologies
 
-- Frontend: React (planned), Vite (planned), TypeScript 5
+- Frontend: React 19, Vite 7, TypeScript 5
 - Backend: Express 5 (TypeScript, ESM)
 - Tooling: pnpm workspaces, TypeScript 5.9, tsx (dev runtime), ESLint 9 (flat config + `globals`), Prettier 3
 - Infra: Docker (Node 22), GitHub Actions CI (planned)
+
+## Vite + React specifics
+
+- Plugin: `@vitejs/plugin-react` for fast refresh and JSX transform.
+- Env: `import.meta.env` (VITE\_\* exposed to client); use `loadEnv` in `vite.config.ts` for non-VITE variables.
+- Dev proxy: configure `server.proxy` to forward API calls to the backend during development.
 
 ## Rationale
 

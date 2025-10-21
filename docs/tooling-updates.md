@@ -87,3 +87,19 @@ Recommendation
 
 - Keep a single root flat config and import from `globals` to define environments explicitly.
 - Co-locate Prettier via `eslint-config-prettier` to disable conflicting stylistic rules. Run Prettier separately for formatting.
+
+---
+
+## Vite + React Integration
+
+Sources: Vite docs (env & server options), React 19 docs (JSX/Rules of Hooks)
+
+Key points
+
+- Use `@vitejs/plugin-react` for React Fast Refresh and JSX.
+- Client env access via `import.meta.env.VITE_*`; for other envs, use `loadEnv` in `vite.config.ts` and inject via `define`.
+- Dev server proxy (`server.proxy`) can forward `/api` to the backend to avoid CORS hassles during development.
+
+Recommendation
+
+- Keep frontend linting centralized in the root flat config with a `frontend/**/*` override enabling browser globals and React hooks rules.

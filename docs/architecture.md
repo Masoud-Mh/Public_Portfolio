@@ -23,9 +23,11 @@ Backend (initial)
 - App (Express): HTTP server, JSON body parsing, health route.
 - Future: routers (feature modules), middleware (logging, CORS, security), config layer.
 
-Frontend (planned)
+Frontend
 
-- SPA consuming REST endpoints; future SSR/SSG optional.
+- SPA consuming REST endpoints; dev server on http://localhost:5173 via Vite.
+- Uses `@vitejs/plugin-react`; React 19 JSX (no `import React` required).
+- Browser globals and React hooks rules enforced via root ESLint flat config override.
 
 ## Future Extensions
 
