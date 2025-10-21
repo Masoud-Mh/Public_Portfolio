@@ -35,6 +35,33 @@
   - Proxy (optional): set `server.proxy` in `frontend/vite.config.ts` to route `/api` → `http://localhost:3001`
   - Env: access client vars via `import.meta.env.VITE_*`; load others in `vite.config.ts` via `loadEnv`
 
+### Vite Dev Proxy recipe (example)
+
+In `frontend/vite.config.ts` (documentation example, not applied yet):
+
+```ts
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  return {
+    plugins: [react()],
+    server: {
+      port: env.VITE_PORT ? Number(env.VITE_PORT) : 5173,
+      proxy: {
+        '/api': {
+          target: env.API_BASE_URL || 'http://localhost:3001',
+          changeOrigin: true,
+        },
+      },
+    },
+  };
+});
+```
+
+Client code can call `/api/*` directly during dev; Vite forwards to the backend.
+
 ## Local with Docker Compose (future)
 
 - After Dockerfiles exist, `docker compose up --build` will run both services.

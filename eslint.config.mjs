@@ -42,10 +42,7 @@ export default [
         ecmaFeatures: { jsx: true },
         // Point the TS parser at the monorepo root and the frontend tsconfigs
         tsconfigRootDir: import.meta.dirname,
-        project: [
-          './frontend/tsconfig.app.json',
-          './frontend/tsconfig.node.json',
-        ],
+        project: ['./frontend/tsconfig.app.json', './frontend/tsconfig.node.json'],
       },
       globals: {
         ...globals.browser,

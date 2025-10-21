@@ -43,3 +43,19 @@ This file tracks progress, decisions, and next steps. Keep updates concise and d
 - Shared tooling: Add root ESLint/Prettier/EditorConfig and pre-commit hooks.
 - Frontend scaffold: Vite + React + TS with matching NodeNext strategy.
 - CI: GitHub Actions for install, type-check, build, and a backend smoke test hitting `/health`.
+
+## 🔀 Decision: Next Step (2025-10-21)
+
+Option A — Vite Dev Proxy for Frontend → Backend
+
+- Intent: Smooth local DX by routing `/api` from `frontend` (5173) to `backend` (3001) with no CORS.
+- Scope: Configure `frontend/vite.config.ts` `server.proxy` and document `import.meta.env` usage for base URLs.
+- Acceptance: Frontend dev can call `/api/health` and receive backend response; no manual CORS headers needed in dev.
+
+Option B — CI Workflows (GitHub Actions)
+
+- Intent: Enforce quality gates in PRs/commits (lint, format check, type-check, build) and set the stage for deploys.
+- Scope: Add a workflow that runs on push/PR; cache pnpm store; matrix Node (22.x minimal); build backend and frontend.
+- Acceptance: CI passes green on main and PRs; artifacts (optional) uploaded for build outputs.
+
+Status: Awaiting selection. Both options are independent; CI is platform hygiene, proxy improves daily DX. We can do both—pick order.
