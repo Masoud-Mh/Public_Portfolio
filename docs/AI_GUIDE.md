@@ -4,7 +4,10 @@ This file tracks progress, decisions, and next steps. Keep updates concise and d
 
 ## ✅ Completed
 
-- None yet (initial baseline created 2025-10-21).
+- 2025-10-21: Monorepo folders scaffolded (`backend/`, `frontend/`, `infra/`, `.github/workflows/`).
+- 2025-10-21: Workspace initialized with pnpm + Corepack; Node pinned via `.nvmrc` (22.2); `pnpm-workspace.yaml` created.
+- 2025-10-21: Backend scaffolded (Express 5 + TypeScript, ESM/NodeNext) with `/health` route, dev/build/start scripts using `tsx` and `tsc`.
+- 2025-10-21: Re-ran backend dependency installs to surface warnings; observed deprecations in transitive packages (`glob@7`, `inflight@1`, `rimraf@2`). Using `tsx` for dev (prefer over `ts-node-dev`, which is deprecated/unmaintained). No action needed now beyond avoiding `ts-node-dev`.
 
 ## 🚧 In Progress
 
@@ -26,10 +29,15 @@ This file tracks progress, decisions, and next steps. Keep updates concise and d
 - 2025-10-21: Planned initial architecture (subject to confirmation)
   - Monorepo with `backend/`, `frontend/`, `infra/`, `docs/`, `.github/`.
   - Prefer TypeScript, ESLint + Prettier, and environment-based configuration (no secrets in code).
+- 2025-10-21: Tooling choices (kept current via Context7)
+  - Package manager: pnpm (workspaces) via Corepack; lock `packageManager` in root.
+  - Runtime: Node 22.2 (via `.nvmrc`).
+  - Backend TS config: `module` and `moduleResolution` set to `NodeNext` for ESM on Node 20+.
+  - Dev runner: `tsx` (fast ESM-friendly dev) over `ts-node-dev`.
+  - Express: use `^5` and ESM imports.
 
 ## 📌 Next Steps
 
-- Step 1 (planning): Confirm monorepo scaffolding and toolchain choices.
-- Step 2 (setup): Initialize repo layout and root configs (EditorConfig, Prettier, ESLint) — pending explicit approval.
-- Step 3 (backend scaffold): Create Express + TypeScript skeleton with `/healthz` — only after approval.
-- Step 4 (docs): Update `docs/architecture.md` and `docs/devops.md` to reflect scaffolding.
+- Shared tooling: Add root ESLint/Prettier/EditorConfig and pre-commit hooks.
+- Frontend scaffold: Vite + React + TS with matching NodeNext strategy.
+- CI: GitHub Actions for install, type-check, build, and a backend smoke test hitting `/health`.

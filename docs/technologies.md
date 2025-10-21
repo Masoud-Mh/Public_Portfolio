@@ -1,14 +1,15 @@
 # Technologies
 
-- Frontend: React 19, Vite 7, TypeScript 5
-- Backend: Express (TypeScript)
-- Tooling: ESLint (flat config), Prettier, npm workspaces, Husky + lint-staged
-- Infra: Docker (Node 22, Nginx), GitHub Actions CI
+- Frontend: React (planned), Vite (planned), TypeScript 5
+- Backend: Express 5 (TypeScript, ESM)
+- Tooling: pnpm workspaces, TypeScript 5.9, tsx (dev runtime), ESLint (flat config planned), Prettier
+- Infra: Docker (Node 22), GitHub Actions CI (planned)
 
 ## Rationale
 
 - TypeScript for maintainability and safety.
-- Vite for fast dev/build.
-- Node 22 in CI/Docker to satisfy Vite engines and reduce engine warnings.
-- Express for simplicity and ecosystem.
+- pnpm for fast, space-efficient monorepo installs and deterministic workspaces.
+- tsx for fast ESM-friendly dev without bundling.
+- Node 22 in CI/Docker to align with local dev and avoid engine warnings.
+- Express 5 for a minimalist, mature HTTP stack.
 - Repetition: use `docs/REBUILD.md` to rebuild and internalize the stack.

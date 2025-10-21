@@ -1,29 +1,40 @@
 # DevOps & CI/CD
 
-## CI
+## CI (planned)
 
-- GitHub Actions workflow to install, lint, build for all workspaces.
-- Node 22 used to satisfy Vite engines; caching via actions/setup-node.
+- GitHub Actions workflow to: checkout, setup Node 22, install with pnpm, type-check, build.
+- Backend smoke test: start compiled backend and `curl http://localhost:3001/health`.
+- Cache pnpm store and TypeScript build where applicable.
 
-## CD
+## CD (planned)
 
 - Target: AWS EC2/ECS (to be defined).
-- Docker images for frontend and backend build on main.
-- Next: add deploy job to push images and update service.
+- Build Docker images for `frontend` and `backend` on `main` and push to registry.
+- Deploy job updates the running service (rolling update/blue-green).
 
-## Cloudflare & TLS
+## Cloudflare & TLS (planned)
 
 - Use Cloudflare for DNS/caching.
 - Use Let’s Encrypt for TLS certificates (or terminate at Cloudflare initially).
 
 ## Environments
 
-- `.env` files for local dev; `VITE_API_BASE` for frontend, `PORT`/`CORS_ORIGIN` for backend.
-- GitHub Secrets for CI/CD.
+- `.env` files for local dev; `VITE_API_BASE` for frontend, `PORT` for backend.
+- GitHub Secrets for CI/CD (no secrets in code).
 
-## Local with Docker Compose
+## Local development (current)
 
-- `docker-compose up --build`
-- Frontend: http://localhost:8080
-- Backend: http://localhost:5174
-- Rebuild practice: after deletion, follow `docs/REBUILD.md` to recompose the setup.
+- Backend
+	- Dev: `pnpm --filter @public-portfolio/backend dev` (tsx watch)
+	- Build: `pnpm --filter @public-portfolio/backend build`
+	- Start: `pnpm --filter @public-portfolio/backend start`
+	- Health: `GET http://localhost:3001/health` → `{ "status": "ok" }`
+
+- Frontend
+	- To be scaffolded with Vite React TS; will use `VITE_API_BASE=http://localhost:3001`.
+
+## Local with Docker Compose (future)
+
+- After Dockerfiles exist, `docker compose up --build` will run both services.
+- Frontend: http://localhost:5173 (default Vite)
+- Backend: http://localhost:3001

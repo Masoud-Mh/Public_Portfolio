@@ -22,6 +22,8 @@ This is a **learning journey**, so everything must be **modular, well-documented
     - `/docs/devops.md` for CI/CD and deployment processes
     - `/docs/technologies.md` for explanations of used technologies and libraries
 
+- Documentation cadence: After each completed step, automatically update the relevant docs (AI_GUIDE, architecture, devops, technologies) without asking for confirmation. This auto-update policy applies to documentation only; destructive code or config changes still require explicit approval.
+
 
 ---
 
@@ -70,6 +72,8 @@ Follow a **monorepo** structure:
 - Use consistent, clear commit messages that describe *what* changed and *why*.
 - When unsure, prioritize clarity and maintainability over cleverness.
 
+- Freshness and accuracy (Context7): Before recommending tools, package versions, or APIs, consult up-to-date documentation using the Context7-powered docs retrieval (Upstash/Conte). If the findings are substantial or lengthy, summarize and maintain them in `/docs/tooling-updates.md` and reference that file here. If any ambiguity remains about which docs to consult, ask a brief clarifying question.
+
 ---
 
 ## 6. Continuous Improvement
@@ -96,6 +100,8 @@ Follow a **monorepo** structure:
 - When suggesting a change, **include a short educational note**:
   > Example: “This is better because it reduces state coupling and improves reusability.”
 
+- When providing code, include a brief line-by-line (or section-by-section) explanation immediately after the code. Prioritize clarity: explain purpose, key options, and how it fits the larger system. For longer files, explain by logical sections rather than every single line.
+
 ---
 
 ## 9. Guidance-First Collaboration Mode
@@ -112,6 +118,15 @@ Follow a **monorepo** structure:
 - Confirmation gates: Before any destructive or repo-altering action (file edits, creations, installs, or commands that change state), pause and ask for explicit approval.
 
 - Post-step verification: After I complete a task and say it’s done, you will double-check correctness and completeness. If anything is incorrect or missing, point it out and propose a fix. This verification excludes naming conventions and documentation by default (project/file naming, inline comments, and JSDoc/TSDoc). When I ask you to, you’ll add or refine documentation before I commit (e.g., after I write a `main` function and tell you I’m ready, you document everything prior to the commit).
+
+- Editor-first file changes: Prefer instructing edits using the VS Code editor (or describing exact file content) instead of shell redirections (e.g., `cat > file`, here-docs). Terminal commands are acceptable for package management and tooling (e.g., `npm init`, `pnpm add`), but file contents should be created/edited directly in the editor for clarity and control.
+
+  - Present file contents in fenced code blocks with the correct language tag (e.g., `json`, `ts`, `tsx`, `yaml`). Include the file path as a label before the block (e.g., “File: `backend/tsconfig.json`”).
+  - Preserve indentation and formatting exactly as intended; provide the full file content unless explicitly stating a minimal diff.
+  - Follow each code block with a concise, line-by-line or section-by-section explanation, focusing on why each option or construct exists and how it behaves at runtime.
+  - Avoid shell/terminal redirections for writing files. Use terminal only for package/tooling commands or running scripts; all file content should be authored in the editor.
+
+- Documentation auto-update override: For documentation-only updates, proceed automatically after each step (no additional confirmation). The earlier confirmation requirement remains in effect for code, configuration, or other state-altering changes.
 
 ---
 
