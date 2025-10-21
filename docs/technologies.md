@@ -2,7 +2,7 @@
 
 - Frontend: React (planned), Vite (planned), TypeScript 5
 - Backend: Express 5 (TypeScript, ESM)
-- Tooling: pnpm workspaces, TypeScript 5.9, tsx (dev runtime), ESLint (flat config planned), Prettier
+- Tooling: pnpm workspaces, TypeScript 5.9, tsx (dev runtime), ESLint 9 (flat config + `globals`), Prettier 3
 - Infra: Docker (Node 22), GitHub Actions CI (planned)
 
 ## Rationale

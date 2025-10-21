@@ -4,9 +4,9 @@
 
 - `frontend/` — Vite + React + TypeScript SPA
 - `backend/` — Express + TypeScript API
-	- ESM-first (Node 22+), TS `module`/`moduleResolution` = `NodeNext`
-	- Health endpoint: `GET /health` (200 OK JSON)
-	- Default dev port: 3001
+  - ESM-first (Node 22+), TS `module`/`moduleResolution` = `NodeNext`
+  - Health endpoint: `GET /health` (200 OK JSON)
+  - Default dev port: 3001
 - `infra/` — Dockerfiles and compose; deployment scripts (future)
 - `docs/` — Project documentation
 
@@ -19,10 +19,12 @@
 ## Modules and Boundaries
 
 Backend (initial)
+
 - App (Express): HTTP server, JSON body parsing, health route.
 - Future: routers (feature modules), middleware (logging, CORS, security), config layer.
 
 Frontend (planned)
+
 - SPA consuming REST endpoints; future SSR/SSG optional.
 
 ## Future Extensions
@@ -35,3 +37,8 @@ Frontend (planned)
 - ESM across the repo (Node `type: "module"`).
 - Strict TypeScript settings; prefer explicit types and narrowings.
 - Environment configuration via `.env` (never commit secrets).
+
+## Code quality tooling
+
+- ESLint 9 flat config at the monorepo root, with environment globals provided by the `globals` package.
+- Prettier 3 for consistent formatting; enforced via `pnpm run format:check`.

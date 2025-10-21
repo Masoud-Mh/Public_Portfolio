@@ -25,16 +25,28 @@
 ## Local development (current)
 
 - Backend
-	- Dev: `pnpm --filter @public-portfolio/backend dev` (tsx watch)
-	- Build: `pnpm --filter @public-portfolio/backend build`
-	- Start: `pnpm --filter @public-portfolio/backend start`
-	- Health: `GET http://localhost:3001/health` → `{ "status": "ok" }`
+  - Dev: `pnpm --filter @public-portfolio/backend dev` (tsx watch)
+  - Build: `pnpm --filter @public-portfolio/backend build`
+  - Start: `pnpm --filter @public-portfolio/backend start`
+  - Health: `GET http://localhost:3001/health` → `{ "status": "ok" }`
 
 - Frontend
-	- To be scaffolded with Vite React TS; will use `VITE_API_BASE=http://localhost:3001`.
+  - To be scaffolded with Vite React TS; will use `VITE_API_BASE=http://localhost:3001`.
 
 ## Local with Docker Compose (future)
 
 - After Dockerfiles exist, `docker compose up --build` will run both services.
 - Frontend: http://localhost:5173 (default Vite)
 - Backend: http://localhost:3001
+
+## Quality gates (current)
+
+- Lint: `pnpm run lint` → PASS
+- Format (write): `pnpm run format` → formats repo with Prettier
+- Format (check): `pnpm run format:check` → PASS
+- Types: `pnpm run type-check` → PASS
+
+Notes
+
+- ESLint uses a flat config at repo root and depends on the `globals` package to define environment globals cleanly.
+- Prettier is configured at the root; `.prettierignore` excludes common generated content (`node_modules`, `dist`, `.pnpm-store`).

@@ -8,6 +8,7 @@ This file tracks progress, decisions, and next steps. Keep updates concise and d
 - 2025-10-21: Workspace initialized with pnpm + Corepack; Node pinned via `.nvmrc` (22.2); `pnpm-workspace.yaml` created.
 - 2025-10-21: Backend scaffolded (Express 5 + TypeScript, ESM/NodeNext) with `/health` route, dev/build/start scripts using `tsx` and `tsc`.
 - 2025-10-21: Re-ran backend dependency installs to surface warnings; observed deprecations in transitive packages (`glob@7`, `inflight@1`, `rimraf@2`). Using `tsx` for dev (prefer over `ts-node-dev`, which is deprecated/unmaintained). No action needed now beyond avoiding `ts-node-dev`.
+- 2025-10-21: Shared tooling stabilized — installed ESLint "globals" to fix flat-config import and ran Prettier write. Quality gates now green: Lint PASS, Format PASS, Type-check PASS.
 
 ## 🚧 In Progress
 
